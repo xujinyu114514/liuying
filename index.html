@@ -59,18 +59,34 @@
                 <h1 class="text-xl font-bold text-gray-800">全能工具箱</h1>
             </div>
             
-            <!-- 桌面导航 -->
-            <nav class="hidden md:flex items-center space-x-6">
-                <a href="#tools" class="font-medium text-gray-600 hover:text-primary transition-colors">实用工具</a>
-                <a href="#games" class="font-medium text-gray-600 hover:text-primary transition-colors">小游戏</a>
-                <a href="#calculators" class="font-medium text-gray-600 hover:text-primary transition-colors">计算器</a>
-                <a href="#about" class="font-medium text-gray-600 hover:text-primary transition-colors">关于</a>
-            </nav>
-            
-            <!-- 移动端菜单按钮 -->
-            <button class="md:hidden text-gray-600 hover:text-primary" id="menu-toggle">
-                <i class="fa fa-bars text-xl"></i>
-            </button>
+            <!-- 用户区域 -->
+            <div class="flex items-center space-x-4">
+                <div id="user-info" class="hidden items-center space-x-2">
+                    <span id="username-display" class="font-medium"></span>
+                    <span class="bg-blue-100 text-primary text-xs px-2 py-1 rounded-full">
+                        <i class="fa fa-star"></i> <span id="user-points">0</span>
+                    </span>
+                    <button id="logout-btn" class="text-gray-500 hover:text-red-500">
+                        <i class="fa fa-sign-out"></i>
+                    </button>
+                </div>
+                <button id="login-btn" class="hidden md:block bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg transition-colors">
+                    <i class="fa fa-user mr-1"></i> 登录
+                </button>
+                
+                <!-- 桌面导航 -->
+                <nav class="hidden md:flex items-center space-x-6">
+                    <a href="#tools" class="font-medium text-gray-600 hover:text-primary transition-colors">实用工具</a>
+                    <a href="#games" class="font-medium text-gray-600 hover:text-primary transition-colors">小游戏</a>
+                    <a href="#calculators" class="font-medium text-gray-600 hover:text-primary transition-colors">计算器</a>
+                    <a href="#about" class="font-medium text-gray-600 hover:text-primary transition-colors">关于</a>
+                </nav>
+                
+                <!-- 移动端菜单按钮 -->
+                <button class="md:hidden text-gray-600 hover:text-primary" id="menu-toggle">
+                    <i class="fa fa-bars text-xl"></i>
+                </button>
+            </div>
         </div>
         
         <!-- 移动端导航菜单 -->
@@ -80,6 +96,9 @@
                 <a href="#games" class="py-2 font-medium text-gray-600 hover:text-primary transition-colors">小游戏</a>
                 <a href="#calculators" class="py-2 font-medium text-gray-600 hover:text-primary transition-colors">计算器</a>
                 <a href="#about" class="py-2 font-medium text-gray-600 hover:text-primary transition-colors">关于</a>
+                <button id="mobile-login-btn" class="py-2 font-medium text-primary hover:text-blue-700 transition-colors text-left">
+                    <i class="fa fa-user mr-1"></i> 登录/注册
+                </button>
             </div>
         </div>
     </header>
@@ -122,7 +141,7 @@
                         </div>
                         <h3 class="text-xl font-semibold mb-2">文本工具</h3>
                         <p class="text-gray-600 mb-4">处理文本的实用功能，包括大小写转换、字数统计等</p>
-                        <button class="text-primary font-medium hover:text-blue-700 transition-colors tool-btn" data-tool="text-tools">
+                        <button class="text-primary font-medium hover:text-blue-700 transition-colors tool-btn" data-tool="text-tools" data-points="5">
                             使用工具 <i class="fa fa-angle-right ml-1"></i>
                         </button>
                     </div>
@@ -134,7 +153,7 @@
                         </div>
                         <h3 class="text-xl font-semibold mb-2">密码生成器</h3>
                         <p class="text-gray-600 mb-4">生成高强度随机密码，保护您的在线安全</p>
-                        <button class="text-primary font-medium hover:text-blue-700 transition-colors tool-btn" data-tool="password-generator">
+                        <button class="text-primary font-medium hover:text-blue-700 transition-colors tool-btn" data-tool="password-generator" data-points="5">
                             使用工具 <i class="fa fa-angle-right ml-1"></i>
                         </button>
                     </div>
@@ -146,7 +165,7 @@
                         </div>
                         <h3 class="text-xl font-semibold mb-2">颜色选择器</h3>
                         <p class="text-gray-600 mb-4">拾取和转换颜色值，支持RGB、HEX等多种格式</p>
-                        <button class="text-primary font-medium hover:text-blue-700 transition-colors tool-btn" data-tool="color-picker">
+                        <button class="text-primary font-medium hover:text-blue-700 transition-colors tool-btn" data-tool="color-picker" data-points="5">
                             使用工具 <i class="fa fa-angle-right ml-1"></i>
                         </button>
                     </div>
@@ -158,7 +177,7 @@
                         </div>
                         <h3 class="text-xl font-semibold mb-2">单位转换器</h3>
                         <p class="text-gray-600 mb-4">转换长度、重量、温度等各种计量单位</p>
-                        <button class="text-primary font-medium hover:text-blue-700 transition-colors tool-btn" data-tool="unit-converter">
+                        <button class="text-primary font-medium hover:text-blue-700 transition-colors tool-btn" data-tool="unit-converter" data-points="5">
                             使用工具 <i class="fa fa-angle-right ml-1"></i>
                         </button>
                     </div>
@@ -170,7 +189,7 @@
                         </div>
                         <h3 class="text-xl font-semibold mb-2">二维码生成器</h3>
                         <p class="text-gray-600 mb-4">将文本、链接等信息转换为二维码图片</p>
-                        <button class="text-primary font-medium hover:text-blue-700 transition-colors tool-btn" data-tool="qr-generator">
+                        <button class="text-primary font-medium hover:text-blue-700 transition-colors tool-btn" data-tool="qr-generator" data-points="5">
                             使用工具 <i class="fa fa-angle-right ml-1"></i>
                         </button>
                     </div>
@@ -182,7 +201,7 @@
                         </div>
                         <h3 class="text-xl font-semibold mb-2">计时器</h3>
                         <p class="text-gray-600 mb-4">设置倒计时，帮助您管理时间和提高效率</p>
-                        <button class="text-primary font-medium hover:text-blue-700 transition-colors tool-btn" data-tool="timer">
+                        <button class="text-primary font-medium hover:text-blue-700 transition-colors tool-btn" data-tool="timer" data-points="5">
                             使用工具 <i class="fa fa-angle-right ml-1"></i>
                         </button>
                     </div>
@@ -200,7 +219,7 @@
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- 贪吃蛇 -->
-                    <div class="bg-white rounded-xl shadow-sm overflow-hidden card-hover">
+                    <div class="bg-white rounded rounded-xl shadow-sm overflowflow-hidden card-hover">
                         <div class="h-48 bg-gray-100 relative">
                             <img src="https://picsum.photos/seed/snake/600/400" alt="贪吃蛇游戏预览" class="w-full h-full object-cover">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
@@ -211,7 +230,7 @@
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2">贪吃蛇</h3>
                             <p class="text-gray-600 mb-4">经典的贪吃蛇游戏，控制蛇吃食物并避免碰撞</p>
-                            <button class="text-primary font-medium hover:text-blue-700 transition-colors game-btn" data-game="snake">
+                            <button class="text-primary font-medium hover:text-blue-700 transition-colors game-btn" data-game="snake" data-points="10">
                                 开始游戏 <i class="fa fa-gamepad ml-1"></i>
                             </button>
                         </div>
@@ -229,7 +248,7 @@
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2">记忆卡片</h3>
                             <p class="text-gray-600 mb-4">翻转卡片寻找配对，锻炼您的记忆力</p>
-                            <button class="text-primary font-medium hover:text-blue-700 transition-colors game-btn" data-game="memory">
+                            <button class="text-primary font-medium hover:text-blue-700 transition-colors game-btn" data-game="memory" data-points="10">
                                 开始游戏 <i class="fa fa-gamepad ml-1"></i>
                             </button>
                         </div>
@@ -247,7 +266,7 @@
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2">打砖块</h3>
                             <p class="text-gray-600 mb-4">控制挡板反弹小球，击碎所有砖块</p>
-                            <button class="text-primary font-medium hover:text-blue-700 transition-colors game-btn" data-game="breakout">
+                            <button class="text-primary font-medium hover:text-blue-700 transition-colors game-btn" data-game="breakout" data-points="10">
                                 开始游戏 <i class="fa fa-gamepad ml-1"></i>
                             </button>
                         </div>
@@ -311,7 +330,7 @@
                                 <label class="block text-gray-700 mb-1">体重 (千克)</label>
                                 <input type="number" id="bmi-weight" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" placeholder="例如: 65">
                             </div>
-                            <button id="calculate-bmi" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 rounded-lg transition-colors">
+                            <button id="calculate-bmi" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 rounded-lg transition-colors" data-points="5">
                                 计算BMI
                             </button>
                             
@@ -340,7 +359,7 @@
                         全能工具箱是一个集成了多种实用工具和休闲小游戏的网页应用，旨在为用户提供便捷的在线工具服务和轻松的娱乐体验。
                     </p>
                     <p class="text-gray-600 mb-8">
-                        所有工具和游戏都在浏览器中运行，无需安装任何软件，保护您的隐私和数据安全。
+                        所有工具和游戏都在浏览器中运行，无需安装任何软件，保护您的隐私和数据安全。登录后可积累积分，解锁更多功能！
                     </p>
                     <div class="flex justify-center space-x-4">
                         <a href="#" class="text-gray-600 hover:text-primary transition-colors">
@@ -375,6 +394,78 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- 登录模态框 -->
+    <div id="login-modal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-xl w-full max-w-md overflow-hidden">
+            <div class="p-6 border-b">
+                <h3 class="text-xl font-bold" id="auth-modal-title">登录</h3>
+            </div>
+            <div class="p-6" id="auth-modal-content">
+                <!-- 登录表单 -->
+                <div id="login-form">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2" for="login-username">
+                            用户名
+                        </label>
+                        <input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" id="login-username" type="text" placeholder="请输入用户名">
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-gray-700 mb-2" for="login-password">
+                            密码
+                        </label>
+                        <input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" id="login-password" type="password" placeholder="请输入密码">
+                    </div>
+                    <div class="mb-4">
+                        <button id="submit-login" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 rounded-lg transition-colors">
+                            登录
+                        </button>
+                    </div>
+                    <p class="text-center text-gray-600">
+                        还没有账号？ <a href="#" id="switch-to-register" class="text-primary hover:underline">注册</a>
+                    </p>
+                </div>
+                
+                <!-- 注册表单 (默认隐藏) -->
+                <div id="register-form" class="hidden">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2" for="register-username">
+                            用户名
+                        </label>
+                        <input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" id="register-username" type="text" placeholder="请创建用户名">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2" for="register-password">
+                            密码
+                        </label>
+                        <input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" id="register-password" type="password" placeholder="请创建密码（至少6位）">
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-gray-700 mb-2" for="register-confirm">
+                            确认密码
+                        </label>
+                        <input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" id="register-confirm" type="password" placeholder="请再次输入密码">
+                    </div>
+                    <div class="mb-4">
+                        <button id="submit-register" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 rounded-lg transition-colors">
+                            注册
+                        </button>
+                    </div>
+                    <p class="text-center text-gray-600">
+                        已有账号？ <a href="#" id="switch-to-login" class="text-primary hover:underline">登录</a>
+                    </p>
+                </div>
+                
+                <div id="auth-message" class="mt-4 p-3 rounded-lg hidden"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 积分提示 -->
+    <div id="points-notification" class="fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 flex items-center">
+        <i class="fa fa-star mr-2"></i>
+        <span>获得 <span id="points-amount">5</span> 积分！</span>
     </div>
 
     <!-- 页脚 -->
@@ -435,6 +526,143 @@
 
     <!-- JavaScript -->
     <script>
+        // 用户系统和积分管理
+        const userSystem = {
+            currentUser: null,
+            users: JSON.parse(localStorage.getItem('toolboxUsers')) || {},
+            
+            // 初始化
+            init() {
+                // 检查是否有已登录用户
+                const savedUser = localStorage.getItem('currentToolboxUser');
+                if (savedUser) {
+                    this.login(savedUser);
+                } else {
+                    this.updateUI();
+                }
+            },
+            
+            // 注册新用户
+            register(username, password) {
+                // 检查用户名是否已存在
+                if (this.users[username]) {
+                    return { success: false, message: '用户名已存在' };
+                }
+                
+                // 简单验证
+                if (password.length < 6) {
+                    return { success: false, message: '密码长度至少6位' };
+                }
+                
+                // 保存用户（实际应用中应该加密密码）
+                this.users[username] = {
+                    password: password,
+                    points: 0,
+                    lastLogin: null
+                };
+                
+                // 保存到本地存储
+                localStorage.setItem('toolboxUsers', JSON.stringify(this.users));
+                
+                return { success: true, message: '注册成功，请登录' };
+            },
+            
+            // 登录
+            login(username, password = null) {
+                // 如果只提供了username，视为从本地存储恢复登录状态
+                if (password === null) {
+                    if (this.users[username]) {
+                        this.currentUser = username;
+                        this.users[username].lastLogin = new Date().toISOString();
+                        localStorage.setItem('toolboxUsers', JSON.stringify(this.users));
+                        localStorage.setItem('currentToolboxUser', username);
+                        this.updateUI();
+                        return { success: true };
+                    }
+                    return { success: false, message: '用户不存在' };
+                }
+                
+                // 验证用户名和密码
+                const user = this.users[username];
+                if (!user) {
+                    return { success: false, message: '用户名或密码错误' };
+                }
+                
+                if (user.password !== password) {
+                    return { success: false, message: '用户名或密码错误' };
+                }
+                
+                // 登录成功
+                this.currentUser = username;
+                user.lastLogin = new Date().toISOString();
+                localStorage.setItem('toolboxUsers', JSON.stringify(this.users));
+                localStorage.setItem('currentToolboxUser', username);
+                this.updateUI();
+                
+                return { success: true, message: '登录成功' };
+            },
+            
+            // 登出
+            logout() {
+                this.currentUser = null;
+                localStorage.removeItem('currentToolboxUser');
+                this.updateUI();
+            },
+            
+            // 添加积分
+            addPoints(amount) {
+                if (!this.currentUser) return false;
+                
+                this.users[this.currentUser].points += amount;
+                localStorage.setItem('toolboxUsers', JSON.stringify(this.users));
+                this.updateUI();
+                
+                return true;
+            },
+            
+            // 获取当前用户积分
+            getPoints() {
+                if (!this.currentUser) return 0;
+                return this.users[this.currentUser].points || 0;
+            },
+            
+            // 更新UI显示
+            updateUI() {
+                const userInfo = document.getElementById('user-info');
+                const loginBtn = document.getElementById('login-btn');
+                const usernameDisplay = document.getElementById('username-display');
+                const userPoints = document.getElementById('user-points');
+                
+                if (this.currentUser) {
+                    // 显示用户信息
+                    userInfo.classList.remove('hidden');
+                    userInfo.classList.add('flex');
+                    loginBtn.classList.add('hidden');
+                    
+                    usernameDisplay.textContent = this.currentUser;
+                    userPoints.textContent = this.getPoints();
+                } else {
+                    // 显示登录按钮
+                    userInfo.classList.add('hidden');
+                    userInfo.classList.remove('flex');
+                    loginBtn.classList.remove('hidden');
+                }
+            }
+        };
+
+        // 显示积分通知
+        function showPointsNotification(amount) {
+            const notification = document.getElementById('points-notification');
+            const pointsAmount = document.getElementById('points-amount');
+            
+            pointsAmount.textContent = amount;
+            notification.classList.remove('translate-y-20', 'opacity-0');
+            
+            setTimeout(() => {
+                notification.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+        
         // 导航栏滚动效果
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
@@ -498,6 +726,11 @@
                 // 等于
                 else if (value === '=') {
                     calculateResult();
+                    // 计算完成后添加积分
+                    if (userSystem.currentUser) {
+                        userSystem.addPoints(1);
+                        showPointsNotification(1);
+                    }
                 } 
                 // 清除
                 else if (value === 'C') {
@@ -655,6 +888,13 @@
             bmiCategory.textContent = category;
             bmiResult.classList.remove('hidden');
             
+            // 计算BMI后添加积分
+            if (userSystem.currentUser) {
+                const points = parseInt(calculateBmiBtn.getAttribute('data-points'));
+                userSystem.addPoints(points);
+                showPointsNotification(points);
+            }
+            
             // 绘制BMI图表
             const ctx = document.getElementById('bmi-chart').getContext('2d');
             
@@ -715,12 +955,29 @@
         const modalContent = document.getElementById('modal-content');
         const closeModal = document.getElementById('close-modal');
         
+        // 当前打开的工具/游戏ID和类型
+        let currentItemId = '';
+        let currentItemType = '';
+        let currentItemPoints = 0;
+        
         // 打开模态框
         document.querySelectorAll('.tool-btn, .game-btn').forEach(button => {
             button.addEventListener('click', () => {
+                // 检查是否登录
+                if (!userSystem.currentUser) {
+                    // 未登录，显示登录模态框
+                    openLoginModal();
+                    return;
+                }
+                
                 const type = button.classList.contains('tool-btn') ? '工具' : '游戏';
                 const name = button.closest('.card-hover, .bg-white').querySelector('h3').textContent;
                 const id = button.getAttribute('data-tool') || button.getAttribute('data-game');
+                const points = parseInt(button.getAttribute('data-points'));
+                
+                currentItemId = id;
+                currentItemType = type;
+                currentItemPoints = points;
                 
                 modalTitle.textContent = `${name}${type}`;
                 loadModalContent(id, type);
@@ -730,10 +987,21 @@
             });
         });
         
-        // 关闭模态框
+        // 关闭模态框时添加积分
         closeModal.addEventListener('click', () => {
             toolModal.classList.add('hidden');
             document.body.style.overflow = ''; // 恢复背景滚动
+            
+            // 给已登录用户添加积分
+            if (userSystem.currentUser && currentItemId) {
+                userSystem.addPoints(currentItemPoints);
+                showPointsNotification(currentItemPoints);
+                
+                // 重置当前项目信息
+                currentItemId = '';
+                currentItemType = '';
+                currentItemPoints = 0;
+            }
         });
         
         // 点击模态框外部关闭
@@ -741,6 +1009,17 @@
             if (e.target === toolModal) {
                 toolModal.classList.add('hidden');
                 document.body.style.overflow = '';
+                
+                // 给已登录用户添加积分
+                if (userSystem.currentUser && currentItemId) {
+                    userSystem.addPoints(currentItemPoints);
+                    showPointsNotification(currentItemPoints);
+                    
+                    // 重置当前项目信息
+                    currentItemId = '';
+                    currentItemType = '';
+                    currentItemPoints = 0;
+                }
             }
         });
         
@@ -1420,6 +1699,7 @@
             
             // 更新游戏状态
             function update() {
+            function update() {
                 // 更新方向
                 direction = nextDirection;
                 
@@ -1500,6 +1780,13 @@
                 clearInterval(gameInterval);
                 finalScore.textContent = score;
                 snakeGameOver.classList.remove('hidden');
+                
+                // 游戏结束时额外奖励积分
+                if (userSystem.currentUser && score > 0) {
+                    const bonusPoints = Math.floor(score / 10);
+                    userSystem.addPoints(bonusPoints);
+                    showPointsNotification(bonusPoints);
+                }
             }
             
             // 开始游戏
@@ -1729,6 +2016,14 @@
                 gameRunning = false;
                 finalFlips.textContent = flips;
                 memoryGameOver.classList.remove('hidden');
+                
+                // 游戏结束时根据表现奖励额外积分
+                if (userSystem.currentUser) {
+                    // 翻牌次数越少，奖励积分越多
+                    const bonusPoints = Math.max(1, Math.floor(50 / flips) * 5);
+                    userSystem.addPoints(bonusPoints);
+                    showPointsNotification(bonusPoints);
+                }
             }
             
             // 开始游戏
@@ -2052,95 +2347,3 @@
                 drawBricks();
                 drawBall();
                 drawPaddle();
-                detectCollisions();
-                movePaddle();
-                moveBall();
-            }
-            
-            // 游戏主循环
-            function gameLoop() {
-                draw();
-            }
-            
-            // 检查是否赢了
-            function checkWin() {
-                let hasVisibleBrick = false;
-                
-                for (let c = 0; c < bricks.length; c++) {
-                    for (let r = 0; r < bricks[c].length; r++) {
-                        if (bricks[c][r].visible) {
-                            hasVisibleBrick = true;
-                            break;
-                        }
-                    }
-                    if (hasVisibleBrick) break;
-                }
-                
-                if (!hasVisibleBrick) {
-                    gameRunning = false;
-                    clearInterval(gameInterval);
-                    breakoutWinScore.textContent = score;
-                    breakoutWin.classList.remove('hidden');
-                }
-            }
-            
-            // 游戏结束
-            function gameOver() {
-                gameRunning = false;
-                clearInterval(gameInterval);
-                breakoutFinalScore.textContent = score;
-                breakoutGameOver.classList.remove('hidden');
-            }
-            
-            // 开始游戏
-            function startGame() {
-                initGame();
-                gameRunning = true;
-                gameInterval = setInterval(gameLoop, 16); // 约60fps
-                breakoutInstructions.classList.add('hidden');
-            }
-            
-            // 键盘控制
-            function keyDownHandler(e) {
-                if (e.key === 'Right' || e.key === 'ArrowRight') {
-                    rightPressed = true;
-                } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
-                    leftPressed = true;
-                }
-            }
-            
-            function keyUpHandler(e) {
-                if (e.key === 'Right' || e.key === 'ArrowRight') {
-                    rightPressed = false;
-                } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
-                    leftPressed = false;
-                }
-            }
-            
-            // 鼠标控制
-            function mouseMoveHandler(e) {
-                if (!gameRunning) return;
-                
-                const relativeX = e.clientX - canvas.getBoundingClientRect().left;
-                if (relativeX > 0 && relativeX < canvas.width) {
-                    paddle.x = relativeX - paddle.width / 2;
-                }
-            }
-            
-            // 事件监听
-            startBreakout.addEventListener('click', startGame);
-            breakoutRestart.addEventListener('click', startGame);
-            breakoutPlayAgain.addEventListener('click', startGame);
-            breakoutPlayAgainWin.addEventListener('click', startGame);
-            
-            document.addEventListener('keydown', keyDownHandler);
-            document.addEventListener('keyup', keyUpHandler);
-            canvas.addEventListener('mousemove', mouseMoveHandler);
-            
-            // 初始化游戏
-            initGame();
-            draw();
-        }
-    </script>
-</body>
-</html>
